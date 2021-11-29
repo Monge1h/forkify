@@ -1,0 +1,19 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "Best tool to create playlist using Spotify API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Monge1h/forkify.git"
+  },
+  "author": "Jorge Monge",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Monge1h/forkify/issues"
+  },
+  "homepage": "https://github.com/Monge1h/forkify#readme"
+}
