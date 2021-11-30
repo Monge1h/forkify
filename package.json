@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Monge1h/forkify/issues"
   },
-  "homepage": "https://github.com/Monge1h/forkify#readme"
+  "homepage": "https://github.com/Monge1h/forkify#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
