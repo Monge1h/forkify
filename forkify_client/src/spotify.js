@@ -149,7 +149,7 @@ const createPlaylist = (userId, playlistName) => {
 	 */
 	// retornar el id de la playlist creada
 	return axios
-		.post(`/user/${userId}/playlists`, {
+		.post(`/users/${userId}/playlists`, {
 			name: playlistName,
 			public: false,
 			collaborative: true,
@@ -164,7 +164,7 @@ const createPlaylist = (userId, playlistName) => {
 
 /**
  * Get a User's Top Tracks
- * https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-top-artists-and-tracks
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
  * @param {string} time_range - 'short_term' (last 4 weeks) 'medium_term' (last 6 months) or 'long_term' (calculated from several years of data and including all new data as it becomes available). Defaults to 'short_term'
  * @param {number} limit - The maximum number of items to return, Minimun = 1, Maximum = 50
  * @returns {Promise}
