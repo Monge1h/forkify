@@ -38,6 +38,7 @@ app.get('/login', (req, res) => {
 
 	const scope = ['user-read-private',
                  'user-read-email',
+                 'user-top-read',
                  'playlist-modify-private',
                  'playlist-modify-public'].join(' ');
 
