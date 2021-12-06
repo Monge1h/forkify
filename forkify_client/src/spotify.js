@@ -140,7 +140,7 @@ axios.defaults.headers["Content-Type"] = "application/json";
  * https://developer.spotify.com/documentation/web-api/reference/#/operations/create-playlist
  * @param {string} userId
  * @param {string} playlistName
- * @returns {Promise}
+ * @returns {Object} Response
  */
 const createPlaylist = (userId, playlistName) => {
 	/**
@@ -155,10 +155,10 @@ const createPlaylist = (userId, playlistName) => {
 			collaborative: true,
 		})
 		.then(function (response) {
-			console.log(response);
+			return response
 		})
 		.catch(function (error) {
-			console.log(error);
+			return error
 		});
 };
 
@@ -170,7 +170,10 @@ const createPlaylist = (userId, playlistName) => {
  * @returns {Promise}
  */
 const getTopTracks = (time_range = "short_term", limit) => {
-	return axios.get(`/me/top/tracks?time_range=${time_range}?limit=${limit}`);
+	return axios.get(`/me/top/tracks?` + new URLSearchParams({
+		time_range,
+		limit
+	}));
 };
 
 /**
