@@ -12,7 +12,7 @@ import { useNavigate } from "react-router";
 import { savePlaylist } from "../playlistBackend";
 import { createPlaylist, getTopTracks, addTopTracksToPlaylist } from "../spotify";
 
-function SelectTerm({spotifyTerm, setSpotifyTerm, playlistName, userId, numberOfSongs}) {
+function SelectTerm({spotifyTerm, setSpotifyTerm, playlistName, userId, numberOfSongs,setPlaylistIdMongo}) {
 	let navigate = useNavigate()
 	const handleSubmit = async (e) =>{
 		e.preventDefault()
@@ -22,6 +22,7 @@ function SelectTerm({spotifyTerm, setSpotifyTerm, playlistName, userId, numberOf
 		let urisTopTracks = topTracks.data.items.map(x=>x.uri)
         let addTracksToPlaylist = await addTopTracksToPlaylist(playListId.data.id, urisTopTracks)
 		let savePlaylistMongo = await savePlaylist(playListId.data.id)
+		setPlaylistIdMongo(savePlaylistMongo.data._id)
 		navigate("/playlist-link")
 	}
 	return (
