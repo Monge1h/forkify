@@ -9,6 +9,7 @@
 
 import { Button, ButtonGroup } from "@chakra-ui/button";
 import { useNavigate } from "react-router";
+import { savePlaylist } from "../playlistBackend";
 import { createPlaylist, getTopTracks, addTopTracksToPlaylist } from "../spotify";
 
 function SelectTerm({spotifyTerm, setSpotifyTerm, playlistName, userId, numberOfSongs}) {
@@ -20,6 +21,7 @@ function SelectTerm({spotifyTerm, setSpotifyTerm, playlistName, userId, numberOf
 		let topTracks = await getTopTracks(spotifyTerm, numberOfSongs)
 		let urisTopTracks = topTracks.data.items.map(x=>x.uri)
         let addTracksToPlaylist = await addTopTracksToPlaylist(playListId.data.id, urisTopTracks)
+		let savePlaylistMongo = await savePlaylist(playListId.data.id)
 		navigate("/playlist-link")
 	}
 	return (
