@@ -5,6 +5,7 @@ const querystring = require('querystring')
 const mongoose = require('mongoose')
 const port = process.env.PORT || 8888
 const Playlist = require('./models/Playlists')
+const cors = require('cors')
 
 const app = express()
 
@@ -12,6 +13,12 @@ const CLIENT_ID = process.env.CLIENT_ID
 const CLIENT_SECRET = process.env.CLIENT_SECRET
 const REDIRECT_URI = process.env.REDIRECT_URI
 const MONGO_URI = process.env.MONGO_URI
+const allowCors = process.env.CORS || "*";
+
+const corsOptions = {
+	origin: allowCors,
+	optionsSuccessStatus: 200,
+};
 
 mongoose.connect(MONGO_URI, {
 	useNewUrlParser: true,
@@ -25,6 +32,7 @@ db.once('open', () => {
 });
 
 app.use(express.json())
+app.use(cors(corsOptions))
 
 /**
  * Generates a random string containing numbers and letters
@@ -127,7 +135,7 @@ app.get('/refresh_token', (req, res) => {
 // Create new playlist
 app.post('/playlist', async (req, res) => {
   const { playlistId } = req.body
-	const newPlaylist = new Playlist(playlistId)
+	const newPlaylist = new Playlist({playlistId})
 	
 	const savedPlaylist = await newPlaylist.save()
 
