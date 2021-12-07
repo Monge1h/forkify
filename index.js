@@ -23,7 +23,7 @@ db.once('open', () => {
 	console.log("Connected to MongoDB database...");
 });
 
-
+app.use(express.json())
 
 /**
  * Generates a random string containing numbers and letters
