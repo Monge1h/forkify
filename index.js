@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const axios = require('axios')
 const querystring = require('querystring')
+const mongoose = require('mongoose')
 const port = process.env.PORT || 8888
 
 const app = express()
@@ -9,10 +10,19 @@ const app = express()
 const CLIENT_ID = process.env.CLIENT_ID
 const CLIENT_SECRET = process.env.CLIENT_SECRET
 const REDIRECT_URI = process.env.REDIRECT_URI
+const MONGO_URI = process.env.REDIRECT_URI
 
-app.get('/', (req, res) =>{
-	res.send("Hola")
-})
+mongoose.connect(MONGO_URI, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
+
+db.once('open', () => {
+	console.log("Connected to MongoDB database...");
+});
+
 
 
 /**
