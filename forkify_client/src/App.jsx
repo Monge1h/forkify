@@ -15,6 +15,7 @@ function App() {
 	let [userData, setUserData] = useState({});
 	let [spotifyTerm, setSpotifyTerm] = useState(null)
 	let [numberOfSongs, setNumberOfSongs] = useState(null)
+	let [playlistIdMongo, setPlaylistIdMongo] = useState(null)
 	useEffect(() => {
 		setToken(getAccessToken);
 		const fetchData = async() =>{
@@ -62,6 +63,7 @@ function App() {
 								playlistName={playlistName}
 								userId={userData.id}
 								numberOfSongs={numberOfSongs}
+								setPlaylistIdMongo={setPlaylistIdMongo}
 							/>
 						}
 					/>
@@ -69,6 +71,7 @@ function App() {
 						path="/playlist-link"
 						element={
 							<PlaylistLink
+								playlistIdMongo={playlistIdMongo}
 								playlistName={playlistName}
 							/>
 						}
