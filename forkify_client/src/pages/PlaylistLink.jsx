@@ -4,10 +4,11 @@
  * @returns 
  */
 
-function PlaylistLink({ playlistName }) {
+function PlaylistLink({ playlistName, playlistIdMongo }) {
 	return (
 		<div>
-			{playlistName}
+			<p>It's all done!{playlistName}</p>
+			<p>Share this link with your friends {playlistIdMongo}</p>
 		</div>
 	)
 }
