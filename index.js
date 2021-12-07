@@ -4,6 +4,7 @@ const axios = require('axios')
 const querystring = require('querystring')
 const mongoose = require('mongoose')
 const port = process.env.PORT || 8888
+const Playlist = require('./models/Playlists')
 
 const app = express()
 
@@ -121,6 +122,23 @@ app.get('/refresh_token', (req, res) => {
     .catch(error => {
       res.send(error);
     });
+});
+
+// Create new playlist
+app.post('/playlist', async (req, res) => {
+  const { playlistId } = req.body
+	const newPlaylist = new Playlist(playlistId)
+	
+	const savedPlaylist = await newPlaylist.save()
+
+	return res.json(savedPlaylist);
+});
+
+// Get specific playlist
+app.get('/playlist/:id', async (req, res) => {
+	const q = await Playlist.findById({ _id: req.params.id });
+
+	return res.json(q);
 });
 
 app.listen(port, ()=>{
