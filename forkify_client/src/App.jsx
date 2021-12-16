@@ -7,7 +7,7 @@ import {
 	useLocation,
 } from "react-router-dom";
 import { getAccessToken, getCurrentUserData } from "./spotify";
-import { CreatePlaylist, Home, NumberOfSongs, SelectTerm, PlaylistLink } from "./pages";
+import { CreatePlaylist, Home, NumberOfSongs, SelectTerm, PlaylistLink, PlaylistInvitation } from "./pages";
 
 function App() {
 	const [token, setToken] = useState(null);
@@ -16,6 +16,7 @@ function App() {
 	let [spotifyTerm, setSpotifyTerm] = useState(null)
 	let [numberOfSongs, setNumberOfSongs] = useState(null)
 	let [playlistIdMongo, setPlaylistIdMongo] = useState(null)
+	let [playlistId, setPlaylistId] = useState("");
 	useEffect(() => {
 		setToken(getAccessToken);
 		const fetchData = async() =>{
@@ -64,6 +65,7 @@ function App() {
 								userId={userData.id}
 								numberOfSongs={numberOfSongs}
 								setPlaylistIdMongo={setPlaylistIdMongo}
+								playlistId={playlistId}
 							/>
 						}
 					/>
@@ -73,6 +75,17 @@ function App() {
 							<PlaylistLink
 								playlistIdMongo={playlistIdMongo}
 								playlistName={playlistName}
+							/>
+						}
+					/>
+					<Route
+						path="/playlist-invitation/:playlistIdMongo"
+						element={
+							<PlaylistInvitation
+								setPlaylistId={setPlaylistId}
+								token={token}
+								setToken={setToken}
+								setUserData={setUserData}
 							/>
 						}
 					/>
