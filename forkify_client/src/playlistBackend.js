@@ -19,7 +19,7 @@ const savePlaylist = async (playlistId) => {
  */
 const getPlaylistId = async (id) => {
 	let playlistResponse = await axios.get(`http://localhost:8888/playlist/${id}`)
-	return playlistResponse
+	return playlistResponse.data.playlistId
 };
 
 export { savePlaylist, getPlaylistId }
