@@ -47,6 +47,7 @@ function Home({ token }) {
             {!token ? (
               <Link mt={90} href="http://localhost:8888/login">
                 <Button
+                  width= {{base:"xs", md:"lg"}}
                   colorScheme={'green'}
                   bgGradient='linear(to-r, #2941AB, #034E0F)'
                   px={40}

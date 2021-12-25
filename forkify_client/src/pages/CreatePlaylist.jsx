@@ -29,7 +29,7 @@ function CreatePlaylist({ setPlaylistName }) {
 				<Input
 					type="text"
 					variant="filled"
-					width="lg"
+					width={{base:"xs",md:"lg"}}
 					size="lg"
 					onChange={(e) => setPlaylistName(e.target.value)}
 				/>

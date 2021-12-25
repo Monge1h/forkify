@@ -27,6 +27,7 @@ const toast = useToast()
 		  mb={50}
           >
           <Heading
+            width= {{base:"xs",md:"full"}}
             fontWeight={800}
             fontSize={{ base: '5xl', sm: '6xl', md: '7xl' }}
             lineHeight={'110%'}>
