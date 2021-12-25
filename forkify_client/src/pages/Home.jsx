@@ -18,6 +18,7 @@ function Home({ token }) {
 	return (
       <Container 
       height="100vh" 
+	    maxWidth="container.xl"
 	    display="flex"
       alignItems="center"
       justifyContent="center"
