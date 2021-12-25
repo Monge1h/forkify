@@ -6,23 +6,61 @@
  */
 
 import { Button, ButtonGroup } from "@chakra-ui/button";
-import { Heading } from "@chakra-ui/layout";
-import { Link } from "react-router-dom";
+import { Container, Stack, Heading, Box, Link } from '@chakra-ui/react'
+
+import { Link as reactRouterLink } from "react-router-dom";
 
 function NumberOfSongs({setNumberOfSongs,numberOfSongs }) {
 	return (
+      <Container 
+      height="100vh" 
+	  maxWidth="container.xl"
+	  display="flex"
+      alignItems="center"
+      justifyContent="center"
+      flexDirection={"column"}
+      >
+        <Stack
+          as={Box}
+          textAlign={'center'}
+          spacing={{ base: 8, md: 14 }}
+		  mb={50}
+          >
+          <Heading
+            fontWeight={800}
+            fontSize={{ base: '5xl', sm: '6xl', md: '7xl' }}
+            lineHeight={'110%'}>
+				Select number of songs:
+          </Heading>
+        </Stack>
 		<div>
-			<Heading>{numberOfSongs}</Heading>
 			<ButtonGroup>
-				<Button onClick={()=>setNumberOfSongs(5)}>5</Button>
-				<Button onClick={()=>setNumberOfSongs(10)}>10</Button>
-				<Button onClick={()=>setNumberOfSongs(15)}>15</Button>
+				<Button size="lg" mr={5} onClick={()=>setNumberOfSongs(5)}>5</Button>
+				<Button size="lg" mr={5} onClick={()=>setNumberOfSongs(10)}>10</Button>
+				<Button size="lg" mr={5} onClick={()=>setNumberOfSongs(15)}>15</Button>
 			</ButtonGroup>
-
-				<Link to="/select-term">
-					<Button colorScheme='pink' px='8' type='submit'>Next</Button>
-				</Link>
+			
+        <Stack
+          as={Box}
+          textAlign={'center'}
+          spacing={{ base: 8, md: 14 }}
+		  mb={50}
+          >
+              <Link as={reactRouterLink} to="/select-term" mt={90}>
+					<Button
+						colorScheme={'green'}
+						bgGradient='linear(to-r, #2941AB, #034E0F)'
+						px={40}
+						_hover={{
+							bg: 'green.500',
+						}
+					}>
+					Next
+					</Button>
+              </Link>
+        </Stack>
 		</div>
+      </Container>
 	)
 }
 
