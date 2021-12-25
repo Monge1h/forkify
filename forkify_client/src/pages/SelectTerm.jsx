@@ -13,6 +13,7 @@ import { Button, ButtonGroup } from "@chakra-ui/button";
 import { useNavigate } from "react-router";
 import { savePlaylist } from "../playlistBackend";
 import { createPlaylist, getTopTracks, addTopTracksToPlaylist } from "../spotify";
+import { AnimatedPage } from '../components';
 
 function SelectTerm({spotifyTerm, setSpotifyTerm, playlistName, userId, numberOfSongs,setPlaylistIdMongo, playlistId}) {
 	let navigate = useNavigate()
@@ -31,6 +32,7 @@ function SelectTerm({spotifyTerm, setSpotifyTerm, playlistName, userId, numberOf
 		navigate(url)
 	}
 	return (
+	<AnimatedPage>
       <Container 
       height="100vh" 
 	  maxWidth="container.xl"
@@ -80,6 +82,7 @@ function SelectTerm({spotifyTerm, setSpotifyTerm, playlistName, userId, numberOf
         </Stack>
 		</div>
       </Container>
+	</AnimatedPage>
 	)
 }
 

@@ -4,6 +4,7 @@ import { getPlaylistId } from "../playlistBackend";
 import { getAccessToken, getCurrentUserData } from "../spotify";
 
 import {  Button, Container, Stack, Heading, Box, Link } from '@chakra-ui/react'
+import { AnimatedPage } from "../components";
 
 
 function PlaylistInvitation({ setPlaylistId, token, setToken,setUserData }) {
@@ -27,6 +28,7 @@ function PlaylistInvitation({ setPlaylistId, token, setToken,setUserData }) {
 	}, [])
 
 	return (
+    <AnimatedPage>
       <Container 
       height="100vh" 
 	    maxWidth="container.xl"
@@ -79,6 +81,7 @@ function PlaylistInvitation({ setPlaylistId, token, setToken,setUserData }) {
             )}
           </Stack>
       </Container>
+    </AnimatedPage>
 	)
 }
 

@@ -9,9 +9,11 @@ import { Button, ButtonGroup } from "@chakra-ui/button";
 import { Container, Stack, Heading, Box, Link } from '@chakra-ui/react'
 
 import { Link as reactRouterLink } from "react-router-dom";
+import { AnimatedPage } from "../components";
 
 function NumberOfSongs({setNumberOfSongs,numberOfSongs }) {
 	return (
+    <AnimatedPage>
       <Container 
       height="100vh" 
 	  maxWidth="container.xl"
@@ -61,6 +63,7 @@ function NumberOfSongs({setNumberOfSongs,numberOfSongs }) {
         </Stack>
 		</div>
       </Container>
+    </AnimatedPage>
 	)
 }
 

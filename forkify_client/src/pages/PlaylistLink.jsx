@@ -6,12 +6,14 @@
 
 import { Container, Stack, Heading, Box, Link, Tag, useToast, Text } from '@chakra-ui/react'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { AnimatedPage } from '../components';
 const URL = import.meta.env.VITE_BASE_URL
 
 function PlaylistLink({ playlistName, playlistIdMongo }) {
 const SHARE_URL = `${URL}/playlist-invitation/${playlistIdMongo}`
 const toast = useToast()
 	return (
+    <AnimatedPage>
       <Container 
       height="100vh" 
 	  maxWidth="container.xl"
@@ -51,6 +53,7 @@ const toast = useToast()
       </CopyToClipboard>
       <Text>Copy Me!!</Text>
       </Container>
+    </AnimatedPage>
 	)
 }
 

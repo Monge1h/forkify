@@ -12,10 +12,11 @@ import {
 } from '@chakra-ui/react';
 
 import { Link as reactRouterLink } from "react-router-dom";
-
+import { AnimatedPage } from '../components';
 
 function Home({ token }) {
 	return (
+    <AnimatedPage>
       <Container 
       height="100vh" 
 	    maxWidth="container.xl"
@@ -72,6 +73,7 @@ function Home({ token }) {
             )}
           </Stack>
       </Container>
+    </AnimatedPage>
 		// <VStack>
 		// </VStack>
 	);

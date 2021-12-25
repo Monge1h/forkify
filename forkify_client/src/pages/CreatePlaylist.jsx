@@ -1,10 +1,12 @@
 import { Input, Button, Container, Stack, Heading, Box, Link } from '@chakra-ui/react'
 
 import { Link as reactRouterLink } from "react-router-dom";
+import { AnimatedPage } from '../components';
 
 
 function CreatePlaylist({ setPlaylistName }) {
 	return (
+	<AnimatedPage>
       <Container 
       height="100vh" 
 	  maxWidth="container.xl"
@@ -46,6 +48,7 @@ function CreatePlaylist({ setPlaylistName }) {
 					</Button>
               </Link>
       </Container>
+	 </AnimatedPage>
 	)
 	
 }
