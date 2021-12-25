@@ -4,9 +4,13 @@
  * @returns 
  */
 
-import { Container, Stack, Heading, Box, Link } from '@chakra-ui/react'
+import { Container, Stack, Heading, Box, Link, Tag, useToast, Text } from '@chakra-ui/react'
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+const URL = import.meta.env.VITE_BASE_URL
 
 function PlaylistLink({ playlistName, playlistIdMongo }) {
+const SHARE_URL = `${URL}/playlist-invitation/${playlistIdMongo}`
+const toast = useToast()
 	return (
       <Container 
       height="100vh" 
@@ -27,9 +31,24 @@ function PlaylistLink({ playlistName, playlistIdMongo }) {
             fontSize={{ base: '5xl', sm: '6xl', md: '7xl' }}
             lineHeight={'110%'}>
 			It's all done!{playlistName}
-			Share this link with your friends {playlistIdMongo}
+			Share this link with your friends 
           </Heading>
         </Stack>
+      <CopyToClipboard text={SHARE_URL}>
+        <Tag size="lg" onClick={() =>
+        toast({
+          title: '👌',
+          description: "The text was copied successfully! 😝",
+          status: 'success',
+          duration: 9000,
+          position: "top",
+          isClosable: true,
+        })
+      }>
+        {URL}/playlist-invitation/{playlistIdMongo}
+        </Tag>
+      </CopyToClipboard>
+      <Text>Copy Me!!</Text>
       </Container>
 	)
 }
