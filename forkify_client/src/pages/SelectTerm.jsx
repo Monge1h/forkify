@@ -7,6 +7,8 @@
  * @returns 
  */
 
+import { Container, Stack, Heading, Box, Link } from '@chakra-ui/react'
+
 import { Button, ButtonGroup } from "@chakra-ui/button";
 import { useNavigate } from "react-router";
 import { savePlaylist } from "../playlistBackend";
@@ -17,29 +19,67 @@ function SelectTerm({spotifyTerm, setSpotifyTerm, playlistName, userId, numberOf
 	const handleSubmit = async (e) =>{
 		e.preventDefault()
 		let url = "/playlist-link"
-		if(playlistId == null){
-			playListId = await createPlaylist(userId,playlistName)
-			playListId = playlistId.data.id
-			let savePlaylistMongo = await savePlaylist(playListId)
+		if(playlistId == ""){
+			playlistId = await createPlaylist(userId,playlistName)
+			playlistId = playlistId.data.id
+			let savePlaylistMongo = await savePlaylist(playlistId)
 			setPlaylistIdMongo(savePlaylistMongo.data._id)
 		}
 		let topTracks = await getTopTracks(spotifyTerm, numberOfSongs)
 		let urisTopTracks = topTracks.data.items.map(x=>x.uri)
-		console.log(urisTopTracks)
         let addTracksToPlaylist = await addTopTracksToPlaylist(playlistId, urisTopTracks)
 		navigate(url)
 	}
 	return (
+      <Container 
+      height="100vh" 
+	  maxWidth="container.xl"
+	  display="flex"
+      alignItems="center"
+      justifyContent="center"
+      flexDirection={"column"}
+      >
+        <Stack
+          as={Box}
+          textAlign={'center'}
+          spacing={{ base: 8, md: 14 }}
+		  mb={50}
+          >
+          <Heading
+            fontWeight={800}
+            fontSize={{ base: '5xl', sm: '6xl', md: '7xl' }}
+            lineHeight={'110%'}>
+				We will take {numberOfSongs} <br/>
+				songs from the last:
+          </Heading>
+        </Stack>
 		<div>
 			<ButtonGroup>
-				<Button onClick={() => setSpotifyTerm("short_term")}>Month</Button>
-				<Button onClick={() => setSpotifyTerm("medium_term")}>3 Months</Button>
-				<Button onClick={() => setSpotifyTerm("long_term")}>6 Months</Button>
+				<Button size="lg" mr={5} onClick={() => setSpotifyTerm("short_term")}>Month</Button>
+				<Button size="lg" mr={5} onClick={() => setSpotifyTerm("medium_term")}>3 Months</Button>
+				<Button size="lg" mr={5} onClick={() => setSpotifyTerm("long_term")}>6 Months</Button>
 			</ButtonGroup>
+			
+        <Stack
+		  mt={50}
+          as={Box}
+          textAlign={'center'}
+          spacing={{ base: 8, md: 14 }}
+		  mb={50}
+          >
 			<form onSubmit={handleSubmit}>
-				<Button type="submit">Next</Button>
+				<Button 	
+					colorScheme={'green'}
+					bgGradient='linear(to-r, #2941AB, #034E0F)'
+					px={40}
+					_hover={{
+						bg: 'green.500',
+					}}
+					type="submit">Next</Button>
 			</form>
+        </Stack>
 		</div>
+      </Container>
 	)
 }
 
