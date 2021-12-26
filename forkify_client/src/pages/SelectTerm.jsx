@@ -19,12 +19,13 @@ function SelectTerm({spotifyTerm, setSpotifyTerm, playlistName, userId, numberOf
 	let navigate = useNavigate()
 	const handleSubmit = async (e) =>{
 		e.preventDefault()
-		let url = "/playlist-link"
+		let url = "/playlist-end"
 		if(playlistId == ""){
 			playlistId = await createPlaylist(userId,playlistName)
 			playlistId = playlistId.data.id
-			let savePlaylistMongo = await savePlaylist(playlistId)
+			let savePlaylistMongo = await savePlaylist(playlistId, playlistName)
 			setPlaylistIdMongo(savePlaylistMongo.data._id)
+			url = "/playlist-link"
 		}
 		let topTracks = await getTopTracks(spotifyTerm, numberOfSongs)
 		let urisTopTracks = topTracks.data.items.map(x=>x.uri)
