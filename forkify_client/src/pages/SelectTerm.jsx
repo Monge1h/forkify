@@ -56,10 +56,10 @@ function SelectTerm({spotifyTerm, setSpotifyTerm, playlistName, userId, numberOf
           </Heading>
         </Stack>
 		<div>
-			<ButtonGroup>
-				<Button size="lg" mr={5} onClick={() => setSpotifyTerm("short_term")}>Month</Button>
-				<Button size="lg" mr={5} onClick={() => setSpotifyTerm("medium_term")}>3 Months</Button>
-				<Button size="lg" mr={5} onClick={() => setSpotifyTerm("long_term")}>6 Months</Button>
+			<ButtonGroup display="flex" alignItems={{base:"center"}} justifyItems="center" flexDir={{base:"column", md:"row"}}>
+				<Button size="lg"  mr={{base:0, md:4}}  width={{base:"3xs"}} onClick={() => setSpotifyTerm("short_term")}>Month</Button>
+				<Button size="lg" mr={{base:0, md:4}} mt={{base:4, md:0 }} width={{base:"3xs"}} onClick={() => setSpotifyTerm("medium_term")}>3 Months</Button>
+				<Button size="lg" mr={{base:0, md:4}} mt={{base:4, md:0 }} width={{base:"3xs"}} onClick={() => setSpotifyTerm("long_term")}>6 Months</Button>
 			</ButtonGroup>
 			
         <Stack

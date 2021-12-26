@@ -36,10 +36,10 @@ function NumberOfSongs({setNumberOfSongs,numberOfSongs }) {
           </Heading>
         </Stack>
 		<div>
-			<ButtonGroup>
-				<Button size="lg" mr={5} onClick={()=>setNumberOfSongs(5)}>5</Button>
-				<Button size="lg" mr={5} onClick={()=>setNumberOfSongs(10)}>10</Button>
-				<Button size="lg" mr={5} onClick={()=>setNumberOfSongs(15)}>15</Button>
+			<ButtonGroup display="flex" alignItems={{base:"center"}} justifyItems="center" flexDir={{base:"column", md:"row"}}>
+				<Button size="lg" mr={{base:0, md:4}}  width={{base:"3xs"}} onClick={()=>setNumberOfSongs(5)}>5</Button>
+				<Button size="lg" mr={{base:0, md:4}} mt={{base:4, md:0 }} width={{base:"3xs"}} onClick={()=>setNumberOfSongs(10)}>10</Button>
+				<Button size="lg" mr={{base:0, md:4}} mt={{base:4, md:0 }} width={{base:"3xs"}} onClick={()=>setNumberOfSongs(15)}>15</Button>
 			</ButtonGroup>
 			
         <Stack
