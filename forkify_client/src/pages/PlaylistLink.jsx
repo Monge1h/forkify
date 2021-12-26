@@ -33,7 +33,7 @@ const toast = useToast()
             fontWeight={800}
             fontSize={{ base: '5xl', sm: '6xl', md: '7xl' }}
             lineHeight={'110%'}>
-			It's all done!{playlistName}
+			Your playlist:<Text color="#2941AB">{playlistName}</Text> was created!<br/>
 			Share this link with your friends 
           </Heading>
         </Stack>
