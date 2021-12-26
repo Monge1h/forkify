@@ -7,7 +7,7 @@ import {
 	useLocation,
 } from "react-router-dom";
 import { getAccessToken, getCurrentUserData } from "./spotify";
-import { CreatePlaylist, Home, NumberOfSongs, SelectTerm, PlaylistLink, PlaylistInvitation } from "./pages";
+import { CreatePlaylist, Home, NumberOfSongs, SelectTerm, PlaylistLink, PlaylistInvitation, PlaylistEnd } from "./pages";
 
 function App() {
 	const [token, setToken] = useState(null);
@@ -86,6 +86,16 @@ function App() {
 								token={token}
 								setToken={setToken}
 								setUserData={setUserData}
+								setPlaylistName={setPlaylistName}
+								playlistName={playlistName}
+							/>
+						}
+					/>
+					<Route
+						path="/playlist-end"
+						element={
+							<PlaylistEnd
+								playlistName={playlistName}
 							/>
 						}
 					/>
