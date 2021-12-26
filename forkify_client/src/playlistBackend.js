@@ -5,9 +5,10 @@ import axios from "axios"
  * @param {string} playlistId 
  * @returns {string}
  */
-const savePlaylist = async (playlistId) => {
+const savePlaylist = async (playlistId, playlistName) => {
 	let playlistResponse = await axios.post(`http://localhost:8888/playlist`, {
 			playlistId: playlistId,
+			playlistId: playlistName,
 		})
 	return playlistResponse
 };
@@ -19,7 +20,7 @@ const savePlaylist = async (playlistId) => {
  */
 const getPlaylistId = async (id) => {
 	let playlistResponse = await axios.get(`http://localhost:8888/playlist/${id}`)
-	return playlistResponse.data.playlistId
+	return playlistResponse.data
 };
 
 export { savePlaylist, getPlaylistId }

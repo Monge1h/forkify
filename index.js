@@ -134,8 +134,8 @@ app.get('/refresh_token', (req, res) => {
 
 // Create new playlist
 app.post('/playlist', async (req, res) => {
-  const { playlistId } = req.body
-	const newPlaylist = new Playlist({playlistId})
+  const { playlistId, playlistName } = req.body
+	const newPlaylist = new Playlist({playlistId,playlistName})
 	
 	const savedPlaylist = await newPlaylist.save()
 
