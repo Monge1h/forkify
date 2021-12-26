@@ -8,7 +8,7 @@ import axios from "axios"
 const savePlaylist = async (playlistId, playlistName) => {
 	let playlistResponse = await axios.post(`http://localhost:8888/playlist`, {
 			playlistId: playlistId,
-			playlistId: playlistName,
+			playlistName: playlistName,
 		})
 	return playlistResponse
 };
