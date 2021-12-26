@@ -1,25 +1,30 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link as reactRouterLink } from "react-router-dom";
 import { getPlaylistId } from "../playlistBackend";
 import { getAccessToken, getCurrentUserData } from "../spotify";
+import ClipLoader from "react-spinners/ClipLoader";
 
-import {  Button, Container, Stack, Heading, Box, Link } from '@chakra-ui/react'
+import {  Button, Container, Stack, Heading, Box, Link, Text } from '@chakra-ui/react'
 import { AnimatedPage } from "../components";
 
 
-function PlaylistInvitation({ setPlaylistId, token, setToken,setUserData }) {
+function PlaylistInvitation({ setPlaylistId, token, setToken, setPlaylistName, playlistName, setInvitation, invitation, setPlaylistIdMongo }) {
 	const { playlistIdMongo } = useParams();
+  const [loading, setLoading] = useState(false)
+  console.log(`state: ${invitation}`)
 	useEffect(() => {
+    setPlaylistIdMongo(playlistIdMongo)
+    setInvitation(true)
 		setToken(getAccessToken)
 		const fetchData = async() =>{
 			try {
-				const { data } = await getCurrentUserData()
-				setUserData(data)	
+        setLoading(true)
+				// const { data } = await getCurrentUserData()
+				// setUserData(data)	
 				const playlistId = await getPlaylistId(playlistIdMongo)
-				console.log("playlist id: ")
-				console.log(playlistId)
-				setPlaylistId(playlistId)
-
+				setPlaylistId(playlistId.playlistId)
+				setPlaylistName(playlistId.playlistName)
+        setLoading(false)
 			} catch (error) {
 				console.log(error)
 			}
@@ -28,6 +33,10 @@ function PlaylistInvitation({ setPlaylistId, token, setToken,setUserData }) {
 	}, [])
 
 	return (
+    <>
+    {loading ?
+      <ClipLoader size={150} /> :
+      
     <AnimatedPage>
       <Container 
       height="100vh" 
@@ -46,7 +55,8 @@ function PlaylistInvitation({ setPlaylistId, token, setToken,setUserData }) {
             fontWeight={800}
             fontSize={{ base: '5xl', sm: '6xl', md: '7xl' }}
             lineHeight={'110%'}>
-			You have been invited to put songs on this playlist
+			You have been invited to put songs on this playlist:
+      <Text color="#2941AB">{`${playlistName}`}</Text>
           </Heading>
         </Stack>
           <Stack
@@ -55,7 +65,7 @@ function PlaylistInvitation({ setPlaylistId, token, setToken,setUserData }) {
             alignSelf={'center'}
             position={'relative'}>
             {!token ? (
-              <Link mt={90} href="http://localhost:8888/login">
+              <Link mt={20} href="http://localhost:8888/login">
                 <Button
                   colorScheme={'green'}
                   bgGradient='linear(to-r, #2941AB, #034E0F)'
@@ -67,7 +77,7 @@ function PlaylistInvitation({ setPlaylistId, token, setToken,setUserData }) {
                 </Button>
               </Link>
             ) : (
-              <Link mt={90} to="/number-of-songs" as={reactRouterLink}>
+              <Link mt={20} to="/number-of-songs" as={reactRouterLink}>
                 <Button
                   colorScheme={'green'}
                   bgGradient='linear(to-r, #2941AB, #034E0F)'
@@ -82,7 +92,9 @@ function PlaylistInvitation({ setPlaylistId, token, setToken,setUserData }) {
           </Stack>
       </Container>
     </AnimatedPage>
-	)
+    }
+  </>
+  )
 }
 
 export { PlaylistInvitation }
