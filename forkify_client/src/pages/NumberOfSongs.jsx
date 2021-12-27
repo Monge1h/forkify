@@ -11,7 +11,9 @@ import { Container, Stack, Heading, Box, Link } from '@chakra-ui/react'
 import { Link as reactRouterLink } from "react-router-dom";
 import { AnimatedPage } from "../components";
 
-function NumberOfSongs({setNumberOfSongs,numberOfSongs }) {
+function NumberOfSongs({ setNumberOfSongs }) {
+  localStorage.removeItem("playlistIdMongo")
+  localStorage.removeItem("invitation")
 	return (
     <AnimatedPage>
       <Container 

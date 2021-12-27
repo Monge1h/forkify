@@ -20,6 +20,9 @@ import { getAccessToken } from '../spotify';
 function Home({ token, setToken }) {
   let navigate = useNavigate()
   setToken(getAccessToken)
+  let valid = false
+  let tokenSpoti = localStorage.getItem("spotify_access_token")
+  if (tokenSpoti != null) valid = true
   useEffect(() => {
     const invitationSaved = localStorage.getItem("invitation")
     const playlistIdMongo = localStorage.getItem("playlistIdMongo")
@@ -59,7 +62,7 @@ function Home({ token, setToken }) {
             align={'center'}
             alignSelf={'center'}
             position={'relative'}>
-            {!token ? (
+            {!valid ? (
               <Link mt={90} href="http://localhost:8888/login">
                 <Button
                   width= {{base:"xs", md:"lg"}}

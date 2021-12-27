@@ -27,7 +27,7 @@ function PlaylistEnd({ playlistName }) {
             	<Text color="#2941AB">{playlistName}</Text>
           </Heading>
 
-              <Link mt={20} to="/number-of-songs" as={reactRouterLink}>
+              <Link mt={20} to="/" as={reactRouterLink}>
                 <Button
                   colorScheme={'green'}
                   bgGradient='linear(to-r, #2941AB, #034E0F)'
