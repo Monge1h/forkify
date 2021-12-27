@@ -17,15 +17,14 @@ function App() {
 	let [numberOfSongs, setNumberOfSongs] = useState(null)
 	let [playlistIdMongo, setPlaylistIdMongo] = useState(null)
 	let [playlistId, setPlaylistId] = useState("");
+	let [invitation, setInvitation] = useState(false);
 	useEffect(() => {
 		setToken(getAccessToken);
 		const fetchData = async() =>{
 		try {
 			const { data } = await getCurrentUserData()
-			console.log(data.id)
 			setUserData(data)
 
-			console.log(data)
 			} catch (error) {
 				console.log(error)
 			}
@@ -37,7 +36,10 @@ function App() {
 		<VStack>
 			<Router>
 				<Routes>
-					<Route path="/" element={<Home token={token} userData={userData} setUserData={setUserData}/>} />
+					<Route path="/" element={<Home 
+						token={token} 
+						setToken={setToken}
+						invitation={invitation}/>} />
 					<Route
 						path="/create-playlist"
 						element={
@@ -82,7 +84,10 @@ function App() {
 						path="/playlist-invitation/:playlistIdMongo"
 						element={
 							<PlaylistInvitation
+								setInvitation={setInvitation}
+								invitation={invitation}
 								setPlaylistId={setPlaylistId}
+								setPlaylistIdMongo={setPlaylistIdMongo}
 								token={token}
 								setToken={setToken}
 								setUserData={setUserData}
