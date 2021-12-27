@@ -12,10 +12,14 @@ function PlaylistInvitation({ setPlaylistId, token, setToken, setPlaylistName, p
 	const { playlistIdMongo } = useParams();
   const [loading, setLoading] = useState(false)
   console.log(`state: ${invitation}`)
+  let valid = false
+  let tokenSpoti = localStorage.getItem("spotify_access_token")
+  if (tokenSpoti != null) valid = true
+  setToken(getAccessToken)
+  console.log(`---------- token ${token}`)
 	useEffect(() => {
-    setPlaylistIdMongo(playlistIdMongo)
-    setInvitation(true)
-		setToken(getAccessToken)
+    localStorage.setItem("invitation","1")
+    localStorage.setItem("playlistIdMongo",playlistIdMongo)
 		const fetchData = async() =>{
 			try {
         setLoading(true)
@@ -64,7 +68,7 @@ function PlaylistInvitation({ setPlaylistId, token, setToken, setPlaylistName, p
             align={'center'}
             alignSelf={'center'}
             position={'relative'}>
-            {!token ? (
+            {!valid ? (
               <Link mt={20} href="http://localhost:8888/login">
                 <Button
                   colorScheme={'green'}
