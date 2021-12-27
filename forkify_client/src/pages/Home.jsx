@@ -11,10 +11,24 @@ import {
   createIcon,
 } from '@chakra-ui/react';
 
-import { Link as reactRouterLink } from "react-router-dom";
-import { AnimatedPage } from '../components';
 
-function Home({ token }) {
+import { Link as reactRouterLink, useNavigate } from "react-router-dom";
+import { AnimatedPage } from '../components';
+import { useEffect } from 'react';
+import { getAccessToken } from '../spotify';
+
+function Home({ token, setToken }) {
+  let navigate = useNavigate()
+  setToken(getAccessToken)
+  useEffect(() => {
+    const invitationSaved = localStorage.getItem("invitation")
+    const playlistIdMongo = localStorage.getItem("playlistIdMongo")
+    if(invitationSaved == "1"){
+      console.log(playlistIdMongo)
+      localStorage.removeItem("invitation")
+      navigate(`/playlist-invitation/${playlistIdMongo}`)
+    }
+  }, [])
 	return (
     <AnimatedPage>
       <Container 
