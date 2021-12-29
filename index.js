@@ -11,6 +11,7 @@ const app = express()
 
 const CLIENT_ID = process.env.CLIENT_ID
 const CLIENT_SECRET = process.env.CLIENT_SECRET
+const CLIENT_URL = process.env.CLIENT_URL
 const REDIRECT_URI = process.env.REDIRECT_URI
 const MONGO_URI = process.env.MONGO_URI
 const allowCors = process.env.CORS || "*";
@@ -98,7 +99,7 @@ app.get('/callback', (req, res) => {
           expires_in,
         });
 
-        res.redirect(`http://localhost:3000/?${queryParams}`);
+        res.redirect(`${CLIENT_URL}/?${queryParams}`);
 
       } else {
         res.redirect(`/?${querystring.stringify({ error: 'invalid_token' })}`);
