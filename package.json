@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-dev": "concurrently --kill-others-on-fail \"npm run dev\" \"npm run client\"",
+    "start": "node index.js",
     "client": "cd forkify_client && npm run dev",
     "dev": "nodemon index.js"
   },
