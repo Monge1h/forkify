@@ -9,6 +9,7 @@ import { AnimatedPage } from "../components";
 
 
 function PlaylistInvitation({ setPlaylistId, token, setToken, setPlaylistName, playlistName, setInvitation, invitation, setPlaylistIdMongo }) {
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 	const { playlistIdMongo } = useParams();
   const [loading, setLoading] = useState(false)
   console.log(`state: ${invitation}`)
@@ -69,7 +70,7 @@ function PlaylistInvitation({ setPlaylistId, token, setToken, setPlaylistName, p
             alignSelf={'center'}
             position={'relative'}>
             {!valid ? (
-              <Link mt={20} href="http://localhost:8888/login">
+              <Link mt={20} href={`${BACKEND_URL}/login`}>
                 <Button
                   colorScheme={'green'}
                   bgGradient='linear(to-r, #2941AB, #034E0F)'

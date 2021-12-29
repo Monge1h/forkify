@@ -18,6 +18,7 @@ import { useEffect } from 'react';
 import { getAccessToken } from '../spotify';
 
 function Home({ token, setToken }) {
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
   let navigate = useNavigate()
   setToken(getAccessToken)
   let valid = false
@@ -63,7 +64,7 @@ function Home({ token, setToken }) {
             alignSelf={'center'}
             position={'relative'}>
             {!valid ? (
-              <Link mt={90} href="http://localhost:8888/login">
+              <Link mt={90} href={`${BACKEND_URL}/login`}>
                 <Button
                   width= {{base:"xs", md:"lg"}}
                   colorScheme={'green'}

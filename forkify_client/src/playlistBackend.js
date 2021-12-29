@@ -1,12 +1,13 @@
 import axios from "axios"
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 /**
  * Save playlistId on MongoDb
  * @param {string} playlistId 
  * @returns {string}
  */
 const savePlaylist = async (playlistId, playlistName) => {
-	let playlistResponse = await axios.post(`http://localhost:8888/playlist`, {
+	let playlistResponse = await axios.post(`${BACKEND_URL}/playlist`, {
 			playlistId: playlistId,
 			playlistName: playlistName,
 		})
@@ -19,7 +20,7 @@ const savePlaylist = async (playlistId, playlistName) => {
  * @returns {string}
  */
 const getPlaylistId = async (id) => {
-	let playlistResponse = await axios.get(`http://localhost:8888/playlist/${id}`)
+	let playlistResponse = await axios.get(`${BACKEND_URL}/playlist/${id}`)
 	return playlistResponse.data
 };
 
